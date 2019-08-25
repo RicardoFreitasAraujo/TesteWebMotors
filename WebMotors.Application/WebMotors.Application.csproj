@@ -1,0 +1,12 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\WebMotors.Data\WebMotors.Data.csproj" />
+    <ProjectReference Include="..\WebMotors.Domain\WebMotors.Domain.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,152 @@
+﻿@{
+    ViewData["Title"] = "Cadastro de Anúncios";
+}
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-5">
+            <h2>Cadastro de Anúncios</h2>
+
+        </div>
+        <div class="col-7 text-right">
+            <button class="btn-padrao" onclick="anuncioController.adicionar();"><i class="fa fa-plus" aria-hidden="true"></i> Adicionar Anúncio</button>
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table">
+                <thead>
+                    <tr class="tabela-cabecalho">
+                        <th>Marca</th>
+                        <th>Modelo</th>
+                        <th>Versão</th>
+                        <th>Ano</th>
+                        <th>Km</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody id="table-content">
+                    <tr>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td class="text-right">
+                            <button class="btn-small"><i class="fa fa-pencil" aria-hidden="true"></i></button>
+                            <button class="btn-small"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- Modal Form-->
+<!-- The Modal -->
+<div class="modal fade" id="modalForm">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title" id="titulo-formulario">Cadastro de Anúncio</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <input type="hidden" id="txtId" />
+                <form class="form" id="formAnuncio">
+                    <div class="form-group">
+                        <label class="">Marca (*)</label>
+                        <select class="form-control" id="txtMarca" onchange="anuncioController.aoSelecionarMarca();"></select>
+                    </div>
+                    <div class="form-group">
+                        <label class="">Modelo (*)</label>
+                        <select class="form-control" id="txtModelo" onchange="anuncioController.aoSelecionarModelo();"></select>
+                    </div>
+                    <div class="form-group">
+                        <label class="">Versão (*)</label>
+                        <select class="form-control" id="txtVersao"></select>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label class="">Ano (*)</label>
+                            <input type="number" class="form-control" id="txtAno" />
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label class="">Km (*)</label>
+                            <input type="number" class="form-control" id="txtKm" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="">Observação (*)</label>
+                        <textarea class="form-control" id="txtObservacao" rows="3"></textarea>
+                    </div>
+                </form>
+
+                <div id="formAnuncioLoading" style="display:none;">
+                    <div class='text-center loading-panel'>
+                        <i class='fa fa-circle-o-notch fa-spin fa-3x fa-fw cor-vermelho'></i>
+                    </div>
+                </div>
+
+
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-danger" data-dismiss="modal" onclick="anuncioController.cancelar();">
+                    <i class="fa fa-times" aria-hidden="true"></i> Fechar
+                </button>
+                <button type="button" class="btn btn-danger" onclick="anuncioController.salvar();">
+                    <i class="fa fa-floppy-o" aria-hidden="true"></i> Salvar
+                </button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!--Modal de Erros-->
+<div class="modal fade" id="modalErro">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Ocorreu um erro =(</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <div class="modal-erro-detalhe">
+                </div>
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Entendi</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+@section scripts {
+    <script type="text/javascript">
+        $(document).ready(function () {
+            anuncioController.listar();
+        });
+    </script>
+}
